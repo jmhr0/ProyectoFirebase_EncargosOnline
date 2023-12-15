@@ -1,4 +1,5 @@
 export interface Encargo {
     nombre: string;
-    descripcion: string;
+    cantidad: string;
+    estado: string;
 }

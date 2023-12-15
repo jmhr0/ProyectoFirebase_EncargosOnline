@@ -13,16 +13,39 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-label>Nombre del Encargo</ion-label>
+    
+  <!-- Introduccion del nombre del encargo -->
+  <b><ion-label>Nombre del Encargo</ion-label></b>
   <ion-input [(ngModel)]="encargoEditando.nombre"></ion-input>
+  
+    
+  <!-- Introduccion de la descripcion del encargo -->
+  <b><ion-label>Cantidad Encargada</ion-label></b>
+  <ion-input [(ngModel)]="encargoEditando.cantidad"></ion-input>
+  
+  <!-- Nuevo campo para el estado -->
+<b><ion-label>Estado del Encargo</ion-label></b>
+  <ion-select [(ngModel)]="encargoEditando.estado">
+    <ion-select-option value="pendiente">Pendiente</ion-select-option>
+    <ion-select-option value="en-progreso">En Progreso</ion-select-option>
+    <ion-select-option value="completado">Completado</ion-select-option>
+  </ion-select>
 
-  <ion-label>Descripción del Encargo</ion-label>
-  <ion-input [(ngModel)]="encargoEditando.descripcion"></ion-input>
-
+    <!-- Botones -->
   <ion-button (click)="clicBotonInsertar()">Añadir Encargo</ion-button>
   <ion-button (click)="clicBotonBorrar()">Borrar Encargo</ion-button>
-  <ion-button (click)="clickBotonModificar()">Modificar Encargo</ion-button>
+  <ion-button (click)="clickBotonModificar()">Modificar Encargo</ion-button> <br><br>
 
+
+  <!-- Funcion de filtro (lista desplegable) -->
+  <ion-select [(ngModel)]="filtroEstado" (ionChange)="aplicarFiltro()">
+    <ion-select-option value="" disabled>Filtrar segun estado</ion-select-option>
+    <ion-select-option value="pendiente">Pendiente</ion-select-option>
+    <ion-select-option value="en-progreso">En Progreso</ion-select-option>
+    <ion-select-option value="completado">Completado</ion-select-option>
+  </ion-select>
+
+    <!-- Lista donde se almacenaran los encargos introducidos -->
   <h1>LISTA DE ENCARGOS</h1>
   <ion-list>
     <ion-item *ngFor="let documentEncargo of arrayColeccionEncargos" (click)="selectEncargo(documentEncargo.id, documentEncargo.encargo)">
@@ -31,7 +54,10 @@
           <h2>{{documentEncargo.encargo.nombre}}</h2>
         </ion-row>
         <ion-row>
-          <p>{{documentEncargo.encargo.descripcion}}</p>
+          <p>{{documentEncargo.encargo.cantidad}}</p>
+        </ion-row>
+        <ion-row>
+          <p>{{documentEncargo.encargo.estado}}</p>
         </ion-row>
       </ion-grid>
     </ion-item>

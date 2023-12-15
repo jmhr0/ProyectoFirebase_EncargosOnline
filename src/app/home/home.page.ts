@@ -16,11 +16,18 @@ export class HomePage {
     encargo: {} as Encargo
   }];
   idEncargoSelect: string = "";
+  // Variable para gestionar el filtro del encargo
+  filtroEstado: string = "";
 
   constructor(private firestoreService: FirestoreService) {
     this.obtenerListaEncargos();
   }
 
+  //Se vuelve a renderizar la lista de encargos cuando se aplica el filtro
+  aplicarFiltro() {
+    this.obtenerListaEncargos();
+  }
+    //Funcion para la insercion en la base de datos
   clicBotonInsertar() {
     console.log("Entra en clicBotonInsertar");
     this.firestoreService.insertar("encargos", this.encargoEditando).then(() => {
@@ -31,24 +38,29 @@ export class HomePage {
         console.error(error);
       });
   }
-
+  //Funcion para obtener la informacion de la base de datos
   obtenerListaEncargos() {
     this.firestoreService.consultar("encargos").subscribe((datosRecibidos) => {
       this.arrayColeccionEncargos = [];
       datosRecibidos.forEach((datosEncargo) => {
-        this.arrayColeccionEncargos.push({
-          id: datosEncargo.payload.doc.id,
-          encargo: datosEncargo.payload.doc.data()
-        });
+        const encargo = datosEncargo.payload.doc.data() as Encargo;
+  
+        // operaciones de Filtrado para los encargos
+        if (!this.filtroEstado || encargo.estado === this.filtroEstado) {
+          this.arrayColeccionEncargos.push({
+            id: datosEncargo.payload.doc.id,
+            encargo: encargo
+          });
+        }
       });
     });
   }
-
+  //Manejo de los encargos una vez se hace click en un encargo de la lista
   selectEncargo(idEncargo: string, encargoSelect: Encargo) {
     this.encargoEditando = encargoSelect;
     this.idEncargoSelect = idEncargo;
   }
-
+    //Borrado de la base de datos
   clicBotonBorrar() {
     this.firestoreService.borrar("encargos", this.idEncargoSelect).then(() => {
       console.log("Encargo borrado correctamente");
@@ -58,7 +70,7 @@ export class HomePage {
       console.error(error);
     });
   }
-
+  //Modificacion de un elemento ya existente en la base de datos
   clickBotonModificar() {
     this.firestoreService.modificar("encargos", this.idEncargoSelect, this.encargoEditando).then(() => {
       console.log('Encargo modificado correctamente');
