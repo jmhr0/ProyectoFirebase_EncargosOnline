@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Encargo } from '../encargo';
 import { FirestoreService } from '../firestore.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomePage {
   // Variable para gestionar el filtro del encargo
   filtroEstado: string = "";
 
-  constructor(private firestoreService: FirestoreService) {
+  constructor(private firestoreService: FirestoreService, private router: Router) {
     this.obtenerListaEncargos();
   }
 
@@ -59,6 +60,7 @@ export class HomePage {
   selectEncargo(idEncargo: string, encargoSelect: Encargo) {
     this.encargoEditando = encargoSelect;
     this.idEncargoSelect = idEncargo;
+    this.router.navigate(['detalles',this.idEncargoSelect])
   }
     //Borrado de la base de datos
   clicBotonBorrar() {
