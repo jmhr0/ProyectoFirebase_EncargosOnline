@@ -29,16 +29,7 @@ export class HomePage {
     this.obtenerListaEncargos();
   }
     //Funcion para la insercion en la base de datos
-  clicBotonInsertar() {
-    console.log("Entra en clicBotonInsertar");
-    this.firestoreService.insertar("encargos", this.encargoEditando).then(() => {
-      console.log("Encargo creado correctamente");
-      this.encargoEditando = {} as Encargo;
-    },
-      (error) => {
-        console.error(error);
-      });
-  }
+
   //Funcion para obtener la informacion de la base de datos
   obtenerListaEncargos() {
     this.firestoreService.consultar("encargos").subscribe((datosRecibidos) => {
@@ -79,6 +70,10 @@ export class HomePage {
     }, (error) => {
       console.error(error);
     });
+  }
+
+  clickAddEncargo() {
+    this.router.navigate(['detalles','nuevo']);
   }
 
 }
