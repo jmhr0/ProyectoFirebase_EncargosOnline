@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Ejemplo Encargos
-    </ion-title>
+    <ion-title> Ejemplo Encargos </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,19 +11,23 @@
     </ion-toolbar>
   </ion-header>
 
-
   <!-- Funcion de filtro (lista desplegable) -->
   <ion-select [(ngModel)]="filtroEstado" (ionChange)="aplicarFiltro()">
-    <ion-select-option value="" disabled>Filtrar segun estado</ion-select-option>
+    <ion-select-option value="" disabled
+      >Filtrar segun estado</ion-select-option
+    >
     <ion-select-option value="pendiente">Pendiente</ion-select-option>
     <ion-select-option value="en-progreso">En Progreso</ion-select-option>
     <ion-select-option value="completado">Completado</ion-select-option>
   </ion-select>
 
-    <!-- Lista donde se almacenaran los encargos introducidos -->
+  <!-- Lista donde se almacenaran los encargos introducidos -->
   <h1>LISTA DE ENCARGOS</h1>
   <ion-list>
-    <ion-item *ngFor="let documentEncargo of arrayColeccionEncargos" (click)="selectEncargo(documentEncargo.id, documentEncargo.encargo)">
+    <ion-item
+      *ngFor="let documentEncargo of arrayColeccionEncargos"
+      (click)="selectEncargo(documentEncargo.id, documentEncargo.encargo)"
+    >
       <ion-grid>
         <ion-row>
           <h2>{{documentEncargo.encargo.nombre}}</h2>
@@ -44,4 +46,19 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
 </ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="triangle"></ion-icon>
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="informacion-general">
+      <ion-icon name="ellipse"></ion-icon>
+      <ion-label>Pagina 2</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
