@@ -8,6 +8,8 @@ import { DetallesPageRoutingModule } from './detalles-routing.module';
 
 import { DetallesPage } from './detalles.page';
 
+
+
 @NgModule({
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { Route, Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @Component({
   selector: 'app-detalles',
@@ -33,7 +34,8 @@ export class DetallesPage implements OnInit {
     private loadingController: LoadingController,
     private toastController: ToastController,
     private imagePicker: ImagePicker,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private callNumber: CallNumber
   ) {}
 
   ngOnInit() {
@@ -232,4 +234,10 @@ export class DetallesPage implements OnInit {
         console.error('Error al compartir', error);
       });
   }
+  callSomeone() {
+    this.callNumber.callNumber("603869255", true)
+      .then(() => console.log('Launched dialer!'))
+      .catch(() => console.log('Error launching dialer'));
+  }
+
 }
