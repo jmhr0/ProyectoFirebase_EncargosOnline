@@ -1,5 +1,8 @@
 export interface Encargo {
     nombre: string;
-    cantidad: string;
+    cantidad: BigInteger;
     estado: string;
+    responsable: string;
+    objeto: string;
+    numeroResponsable: BigInteger;
 }

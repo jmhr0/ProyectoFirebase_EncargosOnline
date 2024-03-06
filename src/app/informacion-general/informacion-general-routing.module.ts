@@ -9,6 +9,10 @@ const routes: Routes = [
     component: InformacionGeneralPage
   },
   {
+    path: 'informacion-general',
+    redirectTo: '/informacion-general'
+  },
+  {
     path: 'home',
     redirectTo: '/home'
   }

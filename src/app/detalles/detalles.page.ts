@@ -224,8 +224,8 @@ export class DetallesPage implements OnInit {
   clickSocialShare() {
     this.socialSharing
       .share(
-        this.arrayColeccionEncargos.data.cancion,
-        this.arrayColeccionEncargos.data.autor
+        this.arrayColeccionEncargos.data.nombre,
+        this.arrayColeccionEncargos.data.estado
       )
       .then(() => {
         console.log('Compartido correctamente');
@@ -235,9 +235,9 @@ export class DetallesPage implements OnInit {
       });
   }
   callSomeone() {
-    this.callNumber.callNumber("603869255", true)
-      .then(() => console.log('Launched dialer!'))
-      .catch(() => console.log('Error launching dialer'));
+    this.callNumber.callNumber(this.arrayColeccionEncargos.data.numeroResponsable, true)
+      .then(() => console.log('Se ha realizado la llamada'))
+      .catch(() => console.log('Error al lanzar la llamada'));
   }
 
 }
