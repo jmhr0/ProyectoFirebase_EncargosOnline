@@ -16,8 +16,8 @@
 
     <!-- Funcion de filtro (lista desplegable) -->
     <ion-select [(ngModel)]="filtroEstado" (ionChange)="aplicarFiltro()">
-      <ion-select-option value="" disabled
-        >Estado del encargo</ion-select-option
+      <ion-select-option value=""
+        >Todos los encargos</ion-select-option
       >
       <ion-select-option value="pendiente">Pendiente</ion-select-option>
       <ion-select-option value="en-progreso">En Progreso</ion-select-option>
@@ -50,6 +50,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
 
 
 </ion-content>

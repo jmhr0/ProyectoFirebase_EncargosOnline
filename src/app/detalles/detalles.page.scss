@@ -52,9 +52,19 @@ ion-content {
     --ion-background-color: #100c2c;
 
   }
-
 .borrar {
   --background: #df2c14;
   --border-radius: 20px;
   --color: #fff;
+}
+
+.salir{
+  --background: #741306;
+  --border-radius: 20px;
+  --color: #fff;
+}
+
+.prioritario-id{
+  left: 1%;
+  top: 0.1%;
 }

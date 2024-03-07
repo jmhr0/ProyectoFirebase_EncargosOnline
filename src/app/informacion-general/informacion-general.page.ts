@@ -24,8 +24,8 @@ export class InformacionGeneralPage implements OnInit {
   }
 
   loadMap() {
-    let latitud = 36.66310879451221;
-    let longitud = -5.451101782693781;
+    let latitud = 36.679628;
+    let longitud = -5.444786;
     let zoom = 17;
     this.map = L.map("mapId").setView([latitud, longitud], zoom);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);

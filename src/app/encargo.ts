@@ -5,4 +5,5 @@ export interface Encargo {
     responsable: string;
     objeto: string;
     numeroResponsable: BigInteger;
+    prioritario:  boolean;
 }

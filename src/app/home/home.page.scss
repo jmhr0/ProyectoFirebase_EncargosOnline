@@ -35,6 +35,8 @@ ion-content {
   --ion-background-color: #f4f4f4;
 }
 
+
+
 ion-toolbar {
   --ion-color-primary: #100c2c;
 }
@@ -46,6 +48,14 @@ ion-button {
   margin-bottom: 15px;
   font-weight: bold;
 }
+
+ion-grid:hover {
+  --background: #d3d3d3; /* Gris claro */
+ }
+
+ ion-item:hover {
+  --background-hover: #cccccc; /* Gris claro */
+ }
 
 ion-input {
   --border-radius: 10px;

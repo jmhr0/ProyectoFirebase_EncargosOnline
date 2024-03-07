@@ -239,5 +239,8 @@ export class DetallesPage implements OnInit {
       .then(() => console.log('Se ha realizado la llamada'))
       .catch(() => console.log('Error al lanzar la llamada'));
   }
+  salir() {
+    this.router.navigate(['home',]);
+  }
 
 }
