@@ -36,9 +36,10 @@
   <ion-label>Imagen del objeto</ion-label><br>
   <div class="botonesImagen">
     <ion-button (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
-    <ion-button (click)="eliminarArchivo(arrayColeccionEncargos.data.imagenURL)">Borrar imagen</ion-button>
+    <ion-button (click)="eliminarArchivo(arrayColeccionEncargos.data.downloadURL)">Borrar imagen</ion-button>
   </div>
-  <img [src]="imagenSelec" *ngIf="imagenSelec" >
+  <img *ngIf="imagenPresente()" [src]="imagenSelec || arrayColeccionEncargos.data.downloadURL" alt="Imagen">
+  <p *ngIf="!imagenPresente()">No hay una imagen seleccionada...</p>
   
 
 

@@ -67,6 +67,10 @@ export class DetallesPage implements OnInit {
   */
   //Modificacion de un elemento ya existente en la base de datos
 
+  imagenPresente() {
+    return this.imagenSelec || this.arrayColeccionEncargos.data.downloadURL;
+  }
+
   obtenerDetalles() {
     this.firestoreService
       .consultarPorId('encargos', this.arrayColeccionEncargos.id)
