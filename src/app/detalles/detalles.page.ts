@@ -88,7 +88,24 @@ export class DetallesPage implements OnInit {
   }
 
   clickBotonModificar() {
-    this.router.navigate(['home']);
+    // Verificar si hay una nueva imagen seleccionada
+    if (this.imagenSelec) {
+      // Si hay una nueva imagen, subirla antes de modificar el registro
+      this.subirImagen()
+        .then(() => {
+          // Continuar con la modificación del encargo
+          this.modificarEncargo();
+        })
+        .catch((error) => {
+          console.error('Error al subir la imagen:', error);
+        });
+    } else {
+      // Si no hay una nueva imagen seleccionada, modificar el encargo directamente
+      this.modificarEncargo();
+    }
+  }
+  
+  private modificarEncargo() {
     this.firestoreService
       .modificar(
         'encargos',
@@ -105,7 +122,26 @@ export class DetallesPage implements OnInit {
         }
       );
   }
+  
   clicBotonInsertar() {
+    // Verificar si hay una nueva imagen seleccionada
+    if (this.imagenSelec) {
+      // Si hay una nueva imagen, subirla antes de insertar el encargo
+      this.subirImagen()
+        .then(() => {
+          // Continuar con la inserción del encargo
+          this.insertarEncargo();
+        })
+        .catch((error) => {
+          console.error('Error al subir la imagen:', error);
+        });
+    } else {
+      // Si no hay una nueva imagen seleccionada, insertar el encargo directamente
+      this.insertarEncargo();
+    }
+  }
+  
+  private insertarEncargo() {
     console.log('Entra en clicBotonInsertar');
     this.firestoreService.insertar('encargos', this.arrayColeccionEncargos.data).then(
       () => {
@@ -118,6 +154,8 @@ export class DetallesPage implements OnInit {
       }
     );
   }
+  
+  
 
   public alertButtons = [
     {
@@ -172,7 +210,6 @@ export class DetallesPage implements OnInit {
                     'Imagen que se ha seleccionado (en base64) ' +
                       this.imagenSelec
                   );
-                  this.subirImagen();
                 }
               },
               (err) => {
@@ -231,10 +268,11 @@ export class DetallesPage implements OnInit {
   }
 
   clickSocialShare() {
+    const mensaje = ' Mira este encargo; ' + this.arrayColeccionEncargos.data.nombre + ' ' +  this.arrayColeccionEncargos.data.cantidad + ' ' +  this.arrayColeccionEncargos.data.responsable + ' ' + this.arrayColeccionEncargos.data.downloadURL;
+  
     this.socialSharing
       .share(
-        this.arrayColeccionEncargos.data.nombre,
-        this.arrayColeccionEncargos.data.estado
+        mensaje
       )
       .then(() => {
         console.log('Compartido correctamente');
@@ -243,11 +281,15 @@ export class DetallesPage implements OnInit {
         console.error('Error al compartir', error);
       });
   }
+  
+
   callSomeone() {
     this.callNumber.callNumber(this.arrayColeccionEncargos.data.numeroResponsable, true)
       .then(() => console.log('Se ha realizado la llamada'))
       .catch(() => console.log('Error al lanzar la llamada'));
   }
+
+
   salir() {
     this.router.navigate(['home',]);
   }
