@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFirestoreModule, AngularFireStorageModule],
-  providers: [ImagePicker, CallNumber, SocialSharing,
+  providers: [ImagePicker,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, CallNumber, SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

@@ -6,4 +6,5 @@ export interface Encargo {
     objeto: string;
     numeroResponsable: BigInteger;
     prioritario:  boolean;
+    downloadURL: string;
 }

@@ -1,16 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Información</ion-title>
+    <ion-title>EncargoXpress</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-card>
+  <ion-card-header> Información de Contacto </ion-card-header>
+  <ion-card-content>
+    <ion-icon name="pin"></ion-icon> Av. Herrera Oria, S/N, 11600 Ubrique, Cádiz<br />
+    <ion-icon name="call"></ion-icon> Teléfono: 669293862<br />
+    <ion-icon name="time"></ion-icon> Horario: Lunes a Viernes: 8am - 5pm<br />
+    <ion-icon name="mail"></ion-icon> Email: info@encargoxpress.com<br />
+    <ion-icon name="globe"></ion-icon> Sitio web: www.encargoxpress.com
+  </ion-card-content>
+</ion-card>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Mapa</ion-title>
+      <ion-title size="large">Información</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div id="mapId" style="width:100%; height:100%; "></div>
+  <div id="mapId" style="width: 80%; height: 70%"></div>
+
 </ion-content>
 
 <ion-toolbar>
@@ -20,11 +32,11 @@
         <ion-icon name="triangle"></ion-icon>
         <ion-label>Inicio</ion-label>
       </ion-tab-button>
-  
+
       <ion-tab-button tab="informacion-general">
         <ion-icon name="ellipse"></ion-icon>
         <ion-label>Pagina 2</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-  </ion-toolbar>
+</ion-toolbar>

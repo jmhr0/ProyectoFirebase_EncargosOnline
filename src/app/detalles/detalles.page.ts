@@ -14,7 +14,7 @@ import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
   styleUrls: ['./detalles.page.scss'],
 })
 export class DetallesPage implements OnInit {
-  imagenSelec: string = '';
+  imagenSelec: string = "";
 
   encargoEditando = {} as Encargo;
 
@@ -168,6 +168,7 @@ export class DetallesPage implements OnInit {
                     'Imagen que se ha seleccionado (en base64) ' +
                       this.imagenSelec
                   );
+                  this.subirImagen();
                 }
               },
               (err) => {
@@ -181,34 +182,38 @@ export class DetallesPage implements OnInit {
       }
     );
   }
-  async subirImagen() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait..',
-    });
-
-    const toast = await this.toastController.create({
-      message: 'Image was updated successfully',
-      duration: 3000,
-    });
-
-    let nombreCarpeta = 'imagenes';
-    loading.present();
-
-    let nombreImagen = `${new Date().getTime()}`;
-
-    this.firestoreService
-      .subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
-      .then((snapshot) => {
-        snapshot.ref.getDownloadURL().then((downloadURL) => {
-          console.log('downloadURL:' + downloadURL);
-          toast.present();
-          loading.dismiss();
-        });
+  async subirImagen(): Promise<void> {
+    return new Promise<void>(async (resolve, reject) => {
+      const loading = await this.loadingController.create({
+        message: 'Subiendo imagen...',
       });
+      const toast = await this.toastController.create({
+        message: 'Imagen subida correctamente',
+        duration: 3000,
+      });
+      let nombreCarpeta = 'imagenes';
+
+      loading.present();
+      let nombreImagen = `${new Date().getTime()}`;
+      this.firestoreService
+        .subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
+        .then((snapshot) => {
+          snapshot.ref.getDownloadURL().then((downloadURL) => {
+            console.log('downloadURL: ' + downloadURL);
+            this.arrayColeccionEncargos.data.downloadURL = downloadURL;
+            toast.present();
+            loading.dismiss();
+            resolve();
+          });
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
   async eliminarArchivo(fileURL: string) {
     const toast = await this.toastController.create({
-      message: 'File was deleted successfully',
+      message: 'Imagen borrada correctamente',
       duration: 3000,
     });
     this.firestoreService.eliminarArchivoPorURL(fileURL).then(

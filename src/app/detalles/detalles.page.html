@@ -32,6 +32,17 @@
 
   <b><ion-label>Prioritario</ion-label></b>
   <ion-checkbox class="prioritario-id" [(ngModel)]="arrayColeccionEncargos.data.prioritario"></ion-checkbox> <br><br>
+  
+  <ion-label>Imagen del objeto</ion-label><br>
+  <div class="botonesImagen">
+    <ion-button (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
+    <ion-button (click)="eliminarArchivo(arrayColeccionEncargos.data.imagenURL)">Borrar imagen</ion-button>
+  </div>
+  <img [src]="imagenSelec" *ngIf="imagenSelec" >
+  
+
+
+  <br><br>
 
   
   <!-- Nuevo campo para el estado -->
@@ -62,13 +73,13 @@
   >Salir</ion-button
 >
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
     <ion-fab-button (click)="callSomeone()">
       <ion-icon name="call-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button (click)="clickSocialShare()">
       <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
     </ion-fab-button>
