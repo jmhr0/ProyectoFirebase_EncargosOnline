@@ -1,29 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { InformacionGeneralPage } from './informacion-general.page';
+import { QuienesSomosPage } from './quienes-somos.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: InformacionGeneralPage
+    component: QuienesSomosPage
   },
   {
-    path: 'informacion-general',
+    path: 'informacion-general', // Redirige a la página de InformacionGeneralPage
     redirectTo: '/informacion-general'
   },
   {
-    path: 'home',
+    path: 'home', // Redirige a la página de inicio
     redirectTo: '/home'
   },
-  {
-    path: 'quienes-somos',
-    redirectTo: '/quienes-somos'
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class InformacionGeneralPageRoutingModule {}
+export class QuienesSomosPageRoutingModule {}

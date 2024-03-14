@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'informacion-general',
     redirectTo: '/informacion-general'
+  },
+  {
+    path: 'quienes-somos',
+    redirectTo: '/quienes-somos'
   }
 ];
 

@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'informacion-general',
     loadChildren: () => import('./informacion-general/informacion-general.module').then( m => m.InformacionGeneralPageModule)
   },
+  {
+    path: 'quienes-somos',
+    loadChildren: () => import('./quienes-somos/quienes-somos.module').then( m => m.QuienesSomosPageModule)
+  },
 
 
 ];
